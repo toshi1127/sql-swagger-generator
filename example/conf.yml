@@ -1,0 +1,14 @@
+service:
+  name: TestService
+  host: 1.1.1.1:1234
+  prefix: /v1
+
+resources:
+  products1:
+    title: product1
+    definition:
+      name: Product1
+  products2:
+    title: product2
+    definition:
+      name: Product2
