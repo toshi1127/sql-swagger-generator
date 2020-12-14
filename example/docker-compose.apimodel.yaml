@@ -1,0 +1,44 @@
+version: "3"
+
+services:
+  cleanup:
+    image: alpine:3.12.1
+    volumes:
+      - ./internal:/internal
+      - ./swagger:/swagger
+    command: |
+      rm -rf /internal/restapi/openapi
+  api-model-go:
+    image: openapitools/openapi-generator-cli:v4.3.1
+    volumes:
+      - ./internal:/internal
+      - ./swagger:/swagger
+    command: |
+      generate -i
+      ./swagger/swagger.yml
+      -g go-experimental
+      -o /internal/restapi/openapi
+      --global-property=models
+
+  api-model-ts:
+    image: openapitools/openapi-generator-cli:v4.3.1
+    volumes:
+      - ./httpclient:/httpclient
+      - ./swagger:/swagger
+      - ./open-api-config.json:/open-api-config.json
+    command: |
+      generate -i 
+      ./swagger/swagger.yml
+      -g typescript-axios 
+      -o /httpclient 
+      -c /open-api-config.json
+      
+  format:
+    build:
+      context: ./internal/restapi
+      dockerfile: ../../docker/shared/gotools.Dockerfile
+    working_dir: /go/restapi
+    command: |
+      sh -c "go fmt ./... && goimports -w ./"
+    volumes:
+      - ./internal/restapi:/go/restapi

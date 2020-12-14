@@ -45,7 +45,7 @@ resources:
 Swagger YML can then be generated using the following command:
 
 ```
-sql-swagger-generator conf=./example/conf.yml -sql=./example/queries.sql -outputDir=./example/swagger.yml
+sql-swagger-generator conf=./example/conf.yml -sql=./example/queries.sql -outputDir=./example/swagger/swagger.yml
 ```
 
 ### Example
