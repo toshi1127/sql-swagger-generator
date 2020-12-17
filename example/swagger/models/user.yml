@@ -3,33 +3,26 @@ type: object
 properties:
   user_id:
     type: string
-    x-nullable: true
   nick_name:
     type: string
   profile_image_uri:
     type: string
-    x-nullable: true
   email:
     type: string
   description:
     type: string
-    x-nullable: true
   social_link:
     type: string
-    x-nullable: true
   gender:
     type: string
     enum: 
       - male 
       - female 
       - other
-    x-nullable: true
   identify_status:
     type: string
-    x-nullable: true
   customer_id:
     type: string
-    x-nullable: true
   created_at:
     type: string
     format: date-time
@@ -39,7 +32,6 @@ properties:
   deleted_at:
     type: string
     format: date-time
-    x-nullable: true
 required:
   - nick_name
   - email

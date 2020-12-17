@@ -16,18 +16,18 @@ import (
 
 // User struct for User
 type User struct {
-	UserId NullableString `json:"user_id,omitempty"`
+	UserId *string `json:"user_id,omitempty"`
 	NickName string `json:"nick_name"`
-	ProfileImageUri NullableString `json:"profile_image_uri,omitempty"`
+	ProfileImageUri *string `json:"profile_image_uri,omitempty"`
 	Email string `json:"email"`
-	Description NullableString `json:"description,omitempty"`
-	SocialLink NullableString `json:"social_link,omitempty"`
-	Gender NullableString `json:"gender,omitempty"`
-	IdentifyStatus NullableString `json:"identify_status,omitempty"`
-	CustomerId NullableString `json:"customer_id,omitempty"`
+	Description *string `json:"description,omitempty"`
+	SocialLink *string `json:"social_link,omitempty"`
+	Gender *string `json:"gender,omitempty"`
+	IdentifyStatus *string `json:"identify_status,omitempty"`
+	CustomerId *string `json:"customer_id,omitempty"`
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
-	DeletedAt NullableTime `json:"deleted_at,omitempty"`
+	DeletedAt *time.Time `json:"deleted_at,omitempty"`
 }
 
 // NewUser instantiates a new User object
@@ -51,46 +51,36 @@ func NewUserWithDefaults() *User {
 	return &this
 }
 
-// GetUserId returns the UserId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetUserId returns the UserId field value if set, zero value otherwise.
 func (o *User) GetUserId() string {
-	if o == nil || o.UserId.Get() == nil {
+	if o == nil || o.UserId == nil {
 		var ret string
 		return ret
 	}
-	return *o.UserId.Get()
+	return *o.UserId
 }
 
 // GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *User) GetUserIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.UserId == nil {
 		return nil, false
 	}
-	return o.UserId.Get(), o.UserId.IsSet()
+	return o.UserId, true
 }
 
 // HasUserId returns a boolean if a field has been set.
 func (o *User) HasUserId() bool {
-	if o != nil && o.UserId.IsSet() {
+	if o != nil && o.UserId != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetUserId gets a reference to the given NullableString and assigns it to the UserId field.
+// SetUserId gets a reference to the given string and assigns it to the UserId field.
 func (o *User) SetUserId(v string) {
-	o.UserId.Set(&v)
-}
-// SetUserIdNil sets the value for UserId to be an explicit nil
-func (o *User) SetUserIdNil() {
-	o.UserId.Set(nil)
-}
-
-// UnsetUserId ensures that no value is present for UserId, not even an explicit nil
-func (o *User) UnsetUserId() {
-	o.UserId.Unset()
+	o.UserId = &v
 }
 
 // GetNickName returns the NickName field value
@@ -117,46 +107,36 @@ func (o *User) SetNickName(v string) {
 	o.NickName = v
 }
 
-// GetProfileImageUri returns the ProfileImageUri field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetProfileImageUri returns the ProfileImageUri field value if set, zero value otherwise.
 func (o *User) GetProfileImageUri() string {
-	if o == nil || o.ProfileImageUri.Get() == nil {
+	if o == nil || o.ProfileImageUri == nil {
 		var ret string
 		return ret
 	}
-	return *o.ProfileImageUri.Get()
+	return *o.ProfileImageUri
 }
 
 // GetProfileImageUriOk returns a tuple with the ProfileImageUri field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *User) GetProfileImageUriOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.ProfileImageUri == nil {
 		return nil, false
 	}
-	return o.ProfileImageUri.Get(), o.ProfileImageUri.IsSet()
+	return o.ProfileImageUri, true
 }
 
 // HasProfileImageUri returns a boolean if a field has been set.
 func (o *User) HasProfileImageUri() bool {
-	if o != nil && o.ProfileImageUri.IsSet() {
+	if o != nil && o.ProfileImageUri != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetProfileImageUri gets a reference to the given NullableString and assigns it to the ProfileImageUri field.
+// SetProfileImageUri gets a reference to the given string and assigns it to the ProfileImageUri field.
 func (o *User) SetProfileImageUri(v string) {
-	o.ProfileImageUri.Set(&v)
-}
-// SetProfileImageUriNil sets the value for ProfileImageUri to be an explicit nil
-func (o *User) SetProfileImageUriNil() {
-	o.ProfileImageUri.Set(nil)
-}
-
-// UnsetProfileImageUri ensures that no value is present for ProfileImageUri, not even an explicit nil
-func (o *User) UnsetProfileImageUri() {
-	o.ProfileImageUri.Unset()
+	o.ProfileImageUri = &v
 }
 
 // GetEmail returns the Email field value
@@ -183,214 +163,164 @@ func (o *User) SetEmail(v string) {
 	o.Email = v
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetDescription returns the Description field value if set, zero value otherwise.
 func (o *User) GetDescription() string {
-	if o == nil || o.Description.Get() == nil {
+	if o == nil || o.Description == nil {
 		var ret string
 		return ret
 	}
-	return *o.Description.Get()
+	return *o.Description
 }
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *User) GetDescriptionOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.Description == nil {
 		return nil, false
 	}
-	return o.Description.Get(), o.Description.IsSet()
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *User) HasDescription() bool {
-	if o != nil && o.Description.IsSet() {
+	if o != nil && o.Description != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetDescription gets a reference to the given NullableString and assigns it to the Description field.
+// SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *User) SetDescription(v string) {
-	o.Description.Set(&v)
-}
-// SetDescriptionNil sets the value for Description to be an explicit nil
-func (o *User) SetDescriptionNil() {
-	o.Description.Set(nil)
+	o.Description = &v
 }
 
-// UnsetDescription ensures that no value is present for Description, not even an explicit nil
-func (o *User) UnsetDescription() {
-	o.Description.Unset()
-}
-
-// GetSocialLink returns the SocialLink field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetSocialLink returns the SocialLink field value if set, zero value otherwise.
 func (o *User) GetSocialLink() string {
-	if o == nil || o.SocialLink.Get() == nil {
+	if o == nil || o.SocialLink == nil {
 		var ret string
 		return ret
 	}
-	return *o.SocialLink.Get()
+	return *o.SocialLink
 }
 
 // GetSocialLinkOk returns a tuple with the SocialLink field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *User) GetSocialLinkOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.SocialLink == nil {
 		return nil, false
 	}
-	return o.SocialLink.Get(), o.SocialLink.IsSet()
+	return o.SocialLink, true
 }
 
 // HasSocialLink returns a boolean if a field has been set.
 func (o *User) HasSocialLink() bool {
-	if o != nil && o.SocialLink.IsSet() {
+	if o != nil && o.SocialLink != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetSocialLink gets a reference to the given NullableString and assigns it to the SocialLink field.
+// SetSocialLink gets a reference to the given string and assigns it to the SocialLink field.
 func (o *User) SetSocialLink(v string) {
-	o.SocialLink.Set(&v)
-}
-// SetSocialLinkNil sets the value for SocialLink to be an explicit nil
-func (o *User) SetSocialLinkNil() {
-	o.SocialLink.Set(nil)
+	o.SocialLink = &v
 }
 
-// UnsetSocialLink ensures that no value is present for SocialLink, not even an explicit nil
-func (o *User) UnsetSocialLink() {
-	o.SocialLink.Unset()
-}
-
-// GetGender returns the Gender field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetGender returns the Gender field value if set, zero value otherwise.
 func (o *User) GetGender() string {
-	if o == nil || o.Gender.Get() == nil {
+	if o == nil || o.Gender == nil {
 		var ret string
 		return ret
 	}
-	return *o.Gender.Get()
+	return *o.Gender
 }
 
 // GetGenderOk returns a tuple with the Gender field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *User) GetGenderOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.Gender == nil {
 		return nil, false
 	}
-	return o.Gender.Get(), o.Gender.IsSet()
+	return o.Gender, true
 }
 
 // HasGender returns a boolean if a field has been set.
 func (o *User) HasGender() bool {
-	if o != nil && o.Gender.IsSet() {
+	if o != nil && o.Gender != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetGender gets a reference to the given NullableString and assigns it to the Gender field.
+// SetGender gets a reference to the given string and assigns it to the Gender field.
 func (o *User) SetGender(v string) {
-	o.Gender.Set(&v)
-}
-// SetGenderNil sets the value for Gender to be an explicit nil
-func (o *User) SetGenderNil() {
-	o.Gender.Set(nil)
+	o.Gender = &v
 }
 
-// UnsetGender ensures that no value is present for Gender, not even an explicit nil
-func (o *User) UnsetGender() {
-	o.Gender.Unset()
-}
-
-// GetIdentifyStatus returns the IdentifyStatus field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetIdentifyStatus returns the IdentifyStatus field value if set, zero value otherwise.
 func (o *User) GetIdentifyStatus() string {
-	if o == nil || o.IdentifyStatus.Get() == nil {
+	if o == nil || o.IdentifyStatus == nil {
 		var ret string
 		return ret
 	}
-	return *o.IdentifyStatus.Get()
+	return *o.IdentifyStatus
 }
 
 // GetIdentifyStatusOk returns a tuple with the IdentifyStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *User) GetIdentifyStatusOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.IdentifyStatus == nil {
 		return nil, false
 	}
-	return o.IdentifyStatus.Get(), o.IdentifyStatus.IsSet()
+	return o.IdentifyStatus, true
 }
 
 // HasIdentifyStatus returns a boolean if a field has been set.
 func (o *User) HasIdentifyStatus() bool {
-	if o != nil && o.IdentifyStatus.IsSet() {
+	if o != nil && o.IdentifyStatus != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetIdentifyStatus gets a reference to the given NullableString and assigns it to the IdentifyStatus field.
+// SetIdentifyStatus gets a reference to the given string and assigns it to the IdentifyStatus field.
 func (o *User) SetIdentifyStatus(v string) {
-	o.IdentifyStatus.Set(&v)
-}
-// SetIdentifyStatusNil sets the value for IdentifyStatus to be an explicit nil
-func (o *User) SetIdentifyStatusNil() {
-	o.IdentifyStatus.Set(nil)
+	o.IdentifyStatus = &v
 }
 
-// UnsetIdentifyStatus ensures that no value is present for IdentifyStatus, not even an explicit nil
-func (o *User) UnsetIdentifyStatus() {
-	o.IdentifyStatus.Unset()
-}
-
-// GetCustomerId returns the CustomerId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetCustomerId returns the CustomerId field value if set, zero value otherwise.
 func (o *User) GetCustomerId() string {
-	if o == nil || o.CustomerId.Get() == nil {
+	if o == nil || o.CustomerId == nil {
 		var ret string
 		return ret
 	}
-	return *o.CustomerId.Get()
+	return *o.CustomerId
 }
 
 // GetCustomerIdOk returns a tuple with the CustomerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *User) GetCustomerIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.CustomerId == nil {
 		return nil, false
 	}
-	return o.CustomerId.Get(), o.CustomerId.IsSet()
+	return o.CustomerId, true
 }
 
 // HasCustomerId returns a boolean if a field has been set.
 func (o *User) HasCustomerId() bool {
-	if o != nil && o.CustomerId.IsSet() {
+	if o != nil && o.CustomerId != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetCustomerId gets a reference to the given NullableString and assigns it to the CustomerId field.
+// SetCustomerId gets a reference to the given string and assigns it to the CustomerId field.
 func (o *User) SetCustomerId(v string) {
-	o.CustomerId.Set(&v)
-}
-// SetCustomerIdNil sets the value for CustomerId to be an explicit nil
-func (o *User) SetCustomerIdNil() {
-	o.CustomerId.Set(nil)
-}
-
-// UnsetCustomerId ensures that no value is present for CustomerId, not even an explicit nil
-func (o *User) UnsetCustomerId() {
-	o.CustomerId.Unset()
+	o.CustomerId = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value
@@ -441,76 +371,66 @@ func (o *User) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = v
 }
 
-// GetDeletedAt returns the DeletedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetDeletedAt returns the DeletedAt field value if set, zero value otherwise.
 func (o *User) GetDeletedAt() time.Time {
-	if o == nil || o.DeletedAt.Get() == nil {
+	if o == nil || o.DeletedAt == nil {
 		var ret time.Time
 		return ret
 	}
-	return *o.DeletedAt.Get()
+	return *o.DeletedAt
 }
 
 // GetDeletedAtOk returns a tuple with the DeletedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *User) GetDeletedAtOk() (*time.Time, bool) {
-	if o == nil  {
+	if o == nil || o.DeletedAt == nil {
 		return nil, false
 	}
-	return o.DeletedAt.Get(), o.DeletedAt.IsSet()
+	return o.DeletedAt, true
 }
 
 // HasDeletedAt returns a boolean if a field has been set.
 func (o *User) HasDeletedAt() bool {
-	if o != nil && o.DeletedAt.IsSet() {
+	if o != nil && o.DeletedAt != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetDeletedAt gets a reference to the given NullableTime and assigns it to the DeletedAt field.
+// SetDeletedAt gets a reference to the given time.Time and assigns it to the DeletedAt field.
 func (o *User) SetDeletedAt(v time.Time) {
-	o.DeletedAt.Set(&v)
-}
-// SetDeletedAtNil sets the value for DeletedAt to be an explicit nil
-func (o *User) SetDeletedAtNil() {
-	o.DeletedAt.Set(nil)
-}
-
-// UnsetDeletedAt ensures that no value is present for DeletedAt, not even an explicit nil
-func (o *User) UnsetDeletedAt() {
-	o.DeletedAt.Unset()
+	o.DeletedAt = &v
 }
 
 func (o User) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.UserId.IsSet() {
-		toSerialize["user_id"] = o.UserId.Get()
+	if o.UserId != nil {
+		toSerialize["user_id"] = o.UserId
 	}
 	if true {
 		toSerialize["nick_name"] = o.NickName
 	}
-	if o.ProfileImageUri.IsSet() {
-		toSerialize["profile_image_uri"] = o.ProfileImageUri.Get()
+	if o.ProfileImageUri != nil {
+		toSerialize["profile_image_uri"] = o.ProfileImageUri
 	}
 	if true {
 		toSerialize["email"] = o.Email
 	}
-	if o.Description.IsSet() {
-		toSerialize["description"] = o.Description.Get()
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
 	}
-	if o.SocialLink.IsSet() {
-		toSerialize["social_link"] = o.SocialLink.Get()
+	if o.SocialLink != nil {
+		toSerialize["social_link"] = o.SocialLink
 	}
-	if o.Gender.IsSet() {
-		toSerialize["gender"] = o.Gender.Get()
+	if o.Gender != nil {
+		toSerialize["gender"] = o.Gender
 	}
-	if o.IdentifyStatus.IsSet() {
-		toSerialize["identify_status"] = o.IdentifyStatus.Get()
+	if o.IdentifyStatus != nil {
+		toSerialize["identify_status"] = o.IdentifyStatus
 	}
-	if o.CustomerId.IsSet() {
-		toSerialize["customer_id"] = o.CustomerId.Get()
+	if o.CustomerId != nil {
+		toSerialize["customer_id"] = o.CustomerId
 	}
 	if true {
 		toSerialize["created_at"] = o.CreatedAt
@@ -518,8 +438,8 @@ func (o User) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
-	if o.DeletedAt.IsSet() {
-		toSerialize["deleted_at"] = o.DeletedAt.Get()
+	if o.DeletedAt != nil {
+		toSerialize["deleted_at"] = o.DeletedAt
 	}
 	return json.Marshal(toSerialize)
 }

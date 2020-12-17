@@ -238,9 +238,6 @@ properties:
     {{ $key }}: {{ $value }}
       {{- end }}
     {{- end }}
-{{- if $field.IsNullable }}
-    x-nullable: true
-{{- end }}
   {{- end }}
 required:
 {{- range $index, $field := .Fields }}
