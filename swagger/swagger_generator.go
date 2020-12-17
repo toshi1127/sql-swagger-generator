@@ -2,6 +2,7 @@ package swagger
 
 import (
 	"bytes"
+	"fmt"
 	"log"
 	"os"
 	"strings"
@@ -67,7 +68,7 @@ type (
 	}
 )
 
-func getTypeFromSqlColumnType(col string) FieldType {
+func getTypeFromSqlColumnType(col string, enumValues []string) FieldType {
 	switch col {
 	case "varchar":
 		return FieldType{"string", nil}
@@ -79,11 +80,11 @@ func getTypeFromSqlColumnType(col string) FieldType {
 		return FieldType{"string", map[string]string{
 			"format": "date-time",
 		}}
-	case "DATE":
+	case "date":
 		return FieldType{"string", map[string]string{
 			"format": "date",
 		}}
-	case "date":
+	case "timestamp":
 		return FieldType{"string", map[string]string{
 			"format": "date-time",
 		}}
@@ -101,7 +102,13 @@ func getTypeFromSqlColumnType(col string) FieldType {
 		return FieldType{"integer", map[string]string{
 			"format": "int64",
 		}}
+	case "enum":
+		return FieldType{"string", map[string]string{
+			"enum": strings.Replace("\n      - "+strings.Join(enumValues, " \n      - "), "'", "", -1),
+		}}
 	}
+
+	fmt.Printf("%v\n", col)
 	return FieldType{col + " [unsupported by swagen]", nil}
 }
 
@@ -194,7 +201,7 @@ func (g *Generator) generateResources(outputDirPath string) ([]Resource, error) 
 				for _, col := range ddl.TableSpec.Columns {
 					fields = append(fields, DefinitionField{
 						Name:       col.Name.String(),
-						Type:       getTypeFromSqlColumnType(col.Type.Type),
+						Type:       getTypeFromSqlColumnType(col.Type.Type, col.Type.EnumValues),
 						IsNullable: !col.Type.NotNull,
 					})
 				}

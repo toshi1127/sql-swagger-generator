@@ -20,6 +20,167 @@ paths:
           description: Healthy
         500:
           description: Not healthy
+  /users:
+    get:
+      operationId: GetUsers
+      summary: Get users
+      description: Returns all user resources.
+      parameters:
+        - in: query
+          name: limit
+          type: integer
+        - in: query
+          name: offset
+          type: integer
+      responses:
+        200:
+          description: List of user resources.
+          schema:
+            type: array
+            items:
+              $ref: './models/User.yml'
+        500:
+          description: Internal server error
+    post:
+      operationId: CreateUser
+      summary: Create user
+      description: Creates a user.
+      parameters:
+        - name: resource
+          in: body
+          required: true
+          schema:
+            $ref: './models/User.yml'
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: './models/User.yml'
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/Error'
+        422:
+          description: Unprocessable entity
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: Internal server error
+  /users/batch:
+    get:
+      operationId: GetUsersByID
+      summary: Get users by ID
+      description: Returns the user resources with the given IDs.
+      parameters:
+        - in: query
+          name: ids
+          type: array
+          items:
+            type: integer
+      responses:
+        200:
+          description: List of user resources
+          schema:
+            type: array
+            items:
+              $ref: './models/User.yml'
+        500:
+          description: Internal server error
+  /users/{id}:
+    get:
+      operationId: GetUser
+      summary: Get user by ID
+      description: Returns the user with the given ID.
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          required: true
+      responses:
+        200:
+          description: Single user
+          schema:
+            $ref: './models/User.yml'
+        404:
+          description: Not found
+        500:
+          description: Internal server error
+    patch:
+      operationId: PatchUser
+      summary: Patch user
+      description: Patches the user with the given ID.
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+        - name: patch
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Patch'
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: './models/User.yml'
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: Not found
+        422:
+          description: Unprocessable entity
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: Internal server error
+    put:
+      operationId: PutUser
+      summary: Put user
+      description: Replaces the user with the given ID.
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+        - name: resource
+          in: body
+          required: true
+          schema:
+            $ref: './models/User.yml'
+      responses:
+        200:
+          description: Success
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/Error'
+        404:
+          description: Not found
+        422:
+          description: Unprocessable entity
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: Internal server error
+    delete:
+      operationId: DeleteUser
+      summary: Delete user
+      description: Deletes the user with the given ID.
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+      responses:
+        200:
+          description: Success
+        404:
+          description: Not found
+        500:
+          description: Internal server error
   /products1:
     get:
       operationId: GetProduct1s

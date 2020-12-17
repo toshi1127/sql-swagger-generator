@@ -107,6 +107,96 @@ export interface Product2 {
      */
     price: number;
 }
+/**
+ * 
+ * @export
+ * @interface User
+ */
+export interface User {
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    userId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    nickName: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    profileImageUri?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    email: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    description?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    socialLink?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    gender?: UserGenderEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    identifyStatus?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    customerId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    createdAt: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    updatedAt: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    deletedAt?: string | null;
+}
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum UserGenderEnum {
+    Male = 'male',
+    Female = 'female',
+    Other = 'other'
+}
+
 
 /**
  * DefaultApi - axios parameter creator
@@ -193,6 +283,45 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
+         * Creates a user.
+         * @summary Create user
+         * @param {User} resource 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createUser: async (resource: User, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'resource' is not null or undefined
+            if (resource === null || resource === undefined) {
+                throw new RequiredError('resource','Required parameter resource was null or undefined when calling createUser.');
+            }
+            const localVarPath = `/users`;
+            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const needsSerialization = (typeof resource !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(resource !== undefined ? resource : {}) : (resource || "");
+
+            return {
+                url: globalImportUrl.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Deletes the product1 with the given ID.
          * @summary Delete product1
          * @param {number} id 
@@ -241,6 +370,42 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                 throw new RequiredError('id','Required parameter id was null or undefined when calling deleteProduct2.');
             }
             const localVarPath = `/products2/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: globalImportUrl.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Deletes the user with the given ID.
+         * @summary Delete user
+         * @param {number} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteUser: async (id: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling deleteUser.');
+            }
+            const localVarPath = `/users/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -487,6 +652,117 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
+         * Returns the user with the given ID.
+         * @summary Get user by ID
+         * @param {number} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getUser: async (id: number, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling getUser.');
+            }
+            const localVarPath = `/users/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: globalImportUrl.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns all user resources.
+         * @summary Get users
+         * @param {number} [limit] 
+         * @param {number} [offset] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getUsers: async (limit?: number, offset?: number, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/users`;
+            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (offset !== undefined) {
+                localVarQueryParameter['offset'] = offset;
+            }
+
+
+    
+            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: globalImportUrl.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns the user resources with the given IDs.
+         * @summary Get users by ID
+         * @param {Array<number>} [ids] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getUsersByID: async (ids?: Array<number>, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/users/batch`;
+            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (ids) {
+                localVarQueryParameter['ids'] = ids.join(COLLECTION_FORMATS.csv);
+            }
+
+
+    
+            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: globalImportUrl.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Returns 200 if the service is healthy.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -606,6 +882,51 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
+         * Patches the user with the given ID.
+         * @summary Patch user
+         * @param {number} id 
+         * @param {Array<object>} patch 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        patchUser: async (id: number, patch: Array<object>, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling patchUser.');
+            }
+            // verify required parameter 'patch' is not null or undefined
+            if (patch === null || patch === undefined) {
+                throw new RequiredError('patch','Required parameter patch was null or undefined when calling patchUser.');
+            }
+            const localVarPath = `/users/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const needsSerialization = (typeof patch !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(patch !== undefined ? patch : {}) : (patch || "");
+
+            return {
+                url: globalImportUrl.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Replaces the product1 with the given ID.
          * @summary Put product1
          * @param {number} id 
@@ -695,6 +1016,51 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Replaces the user with the given ID.
+         * @summary Put user
+         * @param {number} id 
+         * @param {User} resource 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        putUser: async (id: number, resource: User, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling putUser.');
+            }
+            // verify required parameter 'resource' is not null or undefined
+            if (resource === null || resource === undefined) {
+                throw new RequiredError('resource','Required parameter resource was null or undefined when calling putUser.');
+            }
+            const localVarPath = `/users/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const needsSerialization = (typeof resource !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(resource !== undefined ? resource : {}) : (resource || "");
+
+            return {
+                url: globalImportUrl.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -733,6 +1099,20 @@ export const DefaultApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Creates a user.
+         * @summary Create user
+         * @param {User} resource 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createUser(resource: User, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
+            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).createUser(resource, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
          * Deletes the product1 with the given ID.
          * @summary Delete product1
          * @param {number} id 
@@ -755,6 +1135,20 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async deleteProduct2(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).deleteProduct2(id, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * Deletes the user with the given ID.
+         * @summary Delete user
+         * @param {number} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteUser(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).deleteUser(id, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -847,6 +1241,49 @@ export const DefaultApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Returns the user with the given ID.
+         * @summary Get user by ID
+         * @param {number} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getUser(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
+            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).getUser(id, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * Returns all user resources.
+         * @summary Get users
+         * @param {number} [limit] 
+         * @param {number} [offset] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getUsers(limit?: number, offset?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<User>>> {
+            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).getUsers(limit, offset, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * Returns the user resources with the given IDs.
+         * @summary Get users by ID
+         * @param {Array<number>} [ids] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getUsersByID(ids?: Array<number>, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<User>>> {
+            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).getUsersByID(ids, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
          * Returns 200 if the service is healthy.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -889,6 +1326,21 @@ export const DefaultApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Patches the user with the given ID.
+         * @summary Patch user
+         * @param {number} id 
+         * @param {Array<object>} patch 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async patchUser(id: number, patch: Array<object>, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
+            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).patchUser(id, patch, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
          * Replaces the product1 with the given ID.
          * @summary Put product1
          * @param {number} id 
@@ -913,6 +1365,21 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         async putProduct2(id: number, resource: Product2, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).putProduct2(id, resource, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * Replaces the user with the given ID.
+         * @summary Put user
+         * @param {number} id 
+         * @param {User} resource 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async putUser(id: number, resource: User, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).putUser(id, resource, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -948,6 +1415,16 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
             return DefaultApiFp(configuration).createProduct2(resource, options).then((request) => request(axios, basePath));
         },
         /**
+         * Creates a user.
+         * @summary Create user
+         * @param {User} resource 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createUser(resource: User, options?: any): AxiosPromise<User> {
+            return DefaultApiFp(configuration).createUser(resource, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Deletes the product1 with the given ID.
          * @summary Delete product1
          * @param {number} id 
@@ -966,6 +1443,16 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          */
         deleteProduct2(id: number, options?: any): AxiosPromise<void> {
             return DefaultApiFp(configuration).deleteProduct2(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Deletes the user with the given ID.
+         * @summary Delete user
+         * @param {number} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteUser(id: number, options?: any): AxiosPromise<void> {
+            return DefaultApiFp(configuration).deleteUser(id, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns the product1 with the given ID.
@@ -1030,6 +1517,37 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
             return DefaultApiFp(configuration).getProduct2sByID(ids, options).then((request) => request(axios, basePath));
         },
         /**
+         * Returns the user with the given ID.
+         * @summary Get user by ID
+         * @param {number} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getUser(id: number, options?: any): AxiosPromise<User> {
+            return DefaultApiFp(configuration).getUser(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns all user resources.
+         * @summary Get users
+         * @param {number} [limit] 
+         * @param {number} [offset] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getUsers(limit?: number, offset?: number, options?: any): AxiosPromise<Array<User>> {
+            return DefaultApiFp(configuration).getUsers(limit, offset, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns the user resources with the given IDs.
+         * @summary Get users by ID
+         * @param {Array<number>} [ids] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getUsersByID(ids?: Array<number>, options?: any): AxiosPromise<Array<User>> {
+            return DefaultApiFp(configuration).getUsersByID(ids, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Returns 200 if the service is healthy.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1060,6 +1578,17 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
             return DefaultApiFp(configuration).patchProduct2(id, patch, options).then((request) => request(axios, basePath));
         },
         /**
+         * Patches the user with the given ID.
+         * @summary Patch user
+         * @param {number} id 
+         * @param {Array<object>} patch 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        patchUser(id: number, patch: Array<object>, options?: any): AxiosPromise<User> {
+            return DefaultApiFp(configuration).patchUser(id, patch, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Replaces the product1 with the given ID.
          * @summary Put product1
          * @param {number} id 
@@ -1080,6 +1609,17 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          */
         putProduct2(id: number, resource: Product2, options?: any): AxiosPromise<void> {
             return DefaultApiFp(configuration).putProduct2(id, resource, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Replaces the user with the given ID.
+         * @summary Put user
+         * @param {number} id 
+         * @param {User} resource 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        putUser(id: number, resource: User, options?: any): AxiosPromise<void> {
+            return DefaultApiFp(configuration).putUser(id, resource, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1116,6 +1656,18 @@ export class DefaultApi extends BaseAPI {
     }
 
     /**
+     * Creates a user.
+     * @summary Create user
+     * @param {User} resource 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public createUser(resource: User, options?: any) {
+        return DefaultApiFp(this.configuration).createUser(resource, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * Deletes the product1 with the given ID.
      * @summary Delete product1
      * @param {number} id 
@@ -1137,6 +1689,18 @@ export class DefaultApi extends BaseAPI {
      */
     public deleteProduct2(id: number, options?: any) {
         return DefaultApiFp(this.configuration).deleteProduct2(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Deletes the user with the given ID.
+     * @summary Delete user
+     * @param {number} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public deleteUser(id: number, options?: any) {
+        return DefaultApiFp(this.configuration).deleteUser(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1214,6 +1778,43 @@ export class DefaultApi extends BaseAPI {
     }
 
     /**
+     * Returns the user with the given ID.
+     * @summary Get user by ID
+     * @param {number} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public getUser(id: number, options?: any) {
+        return DefaultApiFp(this.configuration).getUser(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns all user resources.
+     * @summary Get users
+     * @param {number} [limit] 
+     * @param {number} [offset] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public getUsers(limit?: number, offset?: number, options?: any) {
+        return DefaultApiFp(this.configuration).getUsers(limit, offset, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns the user resources with the given IDs.
+     * @summary Get users by ID
+     * @param {Array<number>} [ids] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public getUsersByID(ids?: Array<number>, options?: any) {
+        return DefaultApiFp(this.configuration).getUsersByID(ids, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * Returns 200 if the service is healthy.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1250,6 +1851,19 @@ export class DefaultApi extends BaseAPI {
     }
 
     /**
+     * Patches the user with the given ID.
+     * @summary Patch user
+     * @param {number} id 
+     * @param {Array<object>} patch 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public patchUser(id: number, patch: Array<object>, options?: any) {
+        return DefaultApiFp(this.configuration).patchUser(id, patch, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * Replaces the product1 with the given ID.
      * @summary Put product1
      * @param {number} id 
@@ -1273,6 +1887,19 @@ export class DefaultApi extends BaseAPI {
      */
     public putProduct2(id: number, resource: Product2, options?: any) {
         return DefaultApiFp(this.configuration).putProduct2(id, resource, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Replaces the user with the given ID.
+     * @summary Put user
+     * @param {number} id 
+     * @param {User} resource 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public putUser(id: number, resource: User, options?: any) {
+        return DefaultApiFp(this.configuration).putUser(id, resource, options).then((request) => request(this.axios, this.basePath));
     }
 
 }

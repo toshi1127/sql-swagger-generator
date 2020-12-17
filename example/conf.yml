@@ -4,6 +4,10 @@ service:
   prefix: /v1
 
 resources:
+  users:
+    title: user
+    definition:
+      name: User
   products1:
     title: product1
     definition:

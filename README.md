@@ -510,4 +510,4 @@ definitions:
           type: string
 
 ```
-</summary><div>
+<div></details>
