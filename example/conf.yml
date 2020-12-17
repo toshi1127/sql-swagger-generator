@@ -8,11 +8,7 @@ resources:
     title: user
     definition:
       name: User
-  products1:
-    title: product1
+  products:
+    title: product
     definition:
-      name: Product1
-  products2:
-    title: product2
-    definition:
-      name: Product2
+      name: Product

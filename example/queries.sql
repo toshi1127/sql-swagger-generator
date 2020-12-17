@@ -1,3 +1,2 @@
 CREATE TABLE IF NOT EXISTS users(`user_id` varchar(255) PRIMARY KEY,`nick_name` varchar(255) NOT NULL,`profile_image_uri` varchar(255),`email` varchar(255) NOT NULL,`description` varchar(255),`social_link` varchar(255),`gender` enum('male', 'female', 'other'),`identify_status` varchar(255),`customer_id` varchar(255) ,`created_at` timestamp not null default current_timestamp,`updated_at` timestamp not null default current_timestamp on update current_timestamp,`deleted_at` timestamp) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-CREATE TABLE products1(id INT NOT NULL AUTO_INCREMENT, name VARCHAR(255) NOT NULL, price INT NOT NULL, PRIMARY KEY (id));
-CREATE TABLE products2(id INT NOT NULL AUTO_INCREMENT, name VARCHAR(255) NOT NULL, price INT NOT NULL, PRIMARY KEY (id));
+CREATE TABLE products(id INT NOT NULL AUTO_INCREMENT, name VARCHAR(255) NOT NULL, price INT NOT NULL, PRIMARY KEY (id));

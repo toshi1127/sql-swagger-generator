@@ -181,11 +181,11 @@ paths:
           description: Not found
         500:
           description: Internal server error
-  /products1:
+  /products:
     get:
-      operationId: GetProduct1s
-      summary: Get product1s
-      description: Returns all product1 resources.
+      operationId: GetProducts
+      summary: Get products
+      description: Returns all product resources.
       parameters:
         - in: query
           name: limit
@@ -195,28 +195,28 @@ paths:
           type: integer
       responses:
         200:
-          description: List of product1 resources.
+          description: List of product resources.
           schema:
             type: array
             items:
-              $ref: './models/Product1.yml'
+              $ref: './models/Product.yml'
         500:
           description: Internal server error
     post:
-      operationId: CreateProduct1
-      summary: Create product1
-      description: Creates a product1.
+      operationId: CreateProduct
+      summary: Create product
+      description: Creates a product.
       parameters:
         - name: resource
           in: body
           required: true
           schema:
-            $ref: './models/Product1.yml'
+            $ref: './models/Product.yml'
       responses:
         201:
           description: Created
           schema:
-            $ref: './models/Product1.yml'
+            $ref: './models/Product.yml'
         400:
           description: Bad request
           schema:
@@ -227,11 +227,11 @@ paths:
             $ref: '#/definitions/Error'
         500:
           description: Internal server error
-  /products1/batch:
+  /products/batch:
     get:
-      operationId: GetProduct1sByID
-      summary: Get product1s by ID
-      description: Returns the product1 resources with the given IDs.
+      operationId: GetProductsByID
+      summary: Get products by ID
+      description: Returns the product resources with the given IDs.
       parameters:
         - in: query
           name: ids
@@ -240,18 +240,18 @@ paths:
             type: integer
       responses:
         200:
-          description: List of product1 resources
+          description: List of product resources
           schema:
             type: array
             items:
-              $ref: './models/Product1.yml'
+              $ref: './models/Product.yml'
         500:
           description: Internal server error
-  /products1/{id}:
+  /products/{id}:
     get:
-      operationId: GetProduct1
-      summary: Get product1 by ID
-      description: Returns the product1 with the given ID.
+      operationId: GetProduct
+      summary: Get product by ID
+      description: Returns the product with the given ID.
       parameters:
         - in: path
           name: id
@@ -259,17 +259,17 @@ paths:
           required: true
       responses:
         200:
-          description: Single product1
+          description: Single product
           schema:
-            $ref: './models/Product1.yml'
+            $ref: './models/Product.yml'
         404:
           description: Not found
         500:
           description: Internal server error
     patch:
-      operationId: PatchProduct1
-      summary: Patch product1
-      description: Patches the product1 with the given ID.
+      operationId: PatchProduct
+      summary: Patch product
+      description: Patches the product with the given ID.
       parameters:
         - name: id
           in: path
@@ -284,7 +284,7 @@ paths:
         200:
           description: Success
           schema:
-            $ref: './models/Product1.yml'
+            $ref: './models/Product.yml'
         400:
           description: Bad request
           schema:
@@ -298,9 +298,9 @@ paths:
         500:
           description: Internal server error
     put:
-      operationId: PutProduct1
-      summary: Put product1
-      description: Replaces the product1 with the given ID.
+      operationId: PutProduct
+      summary: Put product
+      description: Replaces the product with the given ID.
       parameters:
         - name: id
           in: path
@@ -310,7 +310,7 @@ paths:
           in: body
           required: true
           schema:
-            $ref: './models/Product1.yml'
+            $ref: './models/Product.yml'
       responses:
         200:
           description: Success
@@ -327,170 +327,9 @@ paths:
         500:
           description: Internal server error
     delete:
-      operationId: DeleteProduct1
-      summary: Delete product1
-      description: Deletes the product1 with the given ID.
-      parameters:
-        - name: id
-          in: path
-          type: integer
-          required: true
-      responses:
-        200:
-          description: Success
-        404:
-          description: Not found
-        500:
-          description: Internal server error
-  /products2:
-    get:
-      operationId: GetProduct2s
-      summary: Get product2s
-      description: Returns all product2 resources.
-      parameters:
-        - in: query
-          name: limit
-          type: integer
-        - in: query
-          name: offset
-          type: integer
-      responses:
-        200:
-          description: List of product2 resources.
-          schema:
-            type: array
-            items:
-              $ref: './models/Product2.yml'
-        500:
-          description: Internal server error
-    post:
-      operationId: CreateProduct2
-      summary: Create product2
-      description: Creates a product2.
-      parameters:
-        - name: resource
-          in: body
-          required: true
-          schema:
-            $ref: './models/Product2.yml'
-      responses:
-        201:
-          description: Created
-          schema:
-            $ref: './models/Product2.yml'
-        400:
-          description: Bad request
-          schema:
-            $ref: '#/definitions/Error'
-        422:
-          description: Unprocessable entity
-          schema:
-            $ref: '#/definitions/Error'
-        500:
-          description: Internal server error
-  /products2/batch:
-    get:
-      operationId: GetProduct2sByID
-      summary: Get product2s by ID
-      description: Returns the product2 resources with the given IDs.
-      parameters:
-        - in: query
-          name: ids
-          type: array
-          items:
-            type: integer
-      responses:
-        200:
-          description: List of product2 resources
-          schema:
-            type: array
-            items:
-              $ref: './models/Product2.yml'
-        500:
-          description: Internal server error
-  /products2/{id}:
-    get:
-      operationId: GetProduct2
-      summary: Get product2 by ID
-      description: Returns the product2 with the given ID.
-      parameters:
-        - in: path
-          name: id
-          type: integer
-          required: true
-      responses:
-        200:
-          description: Single product2
-          schema:
-            $ref: './models/Product2.yml'
-        404:
-          description: Not found
-        500:
-          description: Internal server error
-    patch:
-      operationId: PatchProduct2
-      summary: Patch product2
-      description: Patches the product2 with the given ID.
-      parameters:
-        - name: id
-          in: path
-          type: integer
-          required: true
-        - name: patch
-          in: body
-          required: true
-          schema:
-            $ref: '#/definitions/Patch'
-      responses:
-        200:
-          description: Success
-          schema:
-            $ref: './models/Product2.yml'
-        400:
-          description: Bad request
-          schema:
-            $ref: '#/definitions/Error'
-        404:
-          description: Not found
-        422:
-          description: Unprocessable entity
-          schema:
-            $ref: '#/definitions/Error'
-        500:
-          description: Internal server error
-    put:
-      operationId: PutProduct2
-      summary: Put product2
-      description: Replaces the product2 with the given ID.
-      parameters:
-        - name: id
-          in: path
-          type: integer
-          required: true
-        - name: resource
-          in: body
-          required: true
-          schema:
-            $ref: './models/Product2.yml'
-      responses:
-        200:
-          description: Success
-        400:
-          description: Bad request
-          schema:
-            $ref: '#/definitions/Error'
-        404:
-          description: Not found
-        422:
-          description: Unprocessable entity
-          schema:
-            $ref: '#/definitions/Error'
-        500:
-          description: Internal server error
-    delete:
-      operationId: DeleteProduct2
-      summary: Delete product2
-      description: Deletes the product2 with the given ID.
+      operationId: DeleteProduct
+      summary: Delete product
+      description: Deletes the product with the given ID.
       parameters:
         - name: id
           in: path
