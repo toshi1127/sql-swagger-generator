@@ -93,7 +93,7 @@ export interface User {
      * @type {string}
      * @memberof User
      */
-    userId?: string | null;
+    userId?: string;
     /**
      * 
      * @type {string}
@@ -105,7 +105,7 @@ export interface User {
      * @type {string}
      * @memberof User
      */
-    profileImageUri?: string | null;
+    profileImageUri?: string;
     /**
      * 
      * @type {string}
@@ -117,13 +117,13 @@ export interface User {
      * @type {string}
      * @memberof User
      */
-    description?: string | null;
+    description?: string;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    socialLink?: string | null;
+    socialLink?: string;
     /**
      * 
      * @type {string}
@@ -135,13 +135,13 @@ export interface User {
      * @type {string}
      * @memberof User
      */
-    identifyStatus?: string | null;
+    identifyStatus?: string;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    customerId?: string | null;
+    customerId?: string;
     /**
      * 
      * @type {string}
@@ -159,7 +159,7 @@ export interface User {
      * @type {string}
      * @memberof User
      */
-    deletedAt?: string | null;
+    deletedAt?: string;
 }
 
 /**

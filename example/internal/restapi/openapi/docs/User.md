@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UserId** | Pointer to **NullableString** |  | [optional] 
+**UserId** | Pointer to **string** |  | [optional] 
 **NickName** | Pointer to **string** |  | 
-**ProfileImageUri** | Pointer to **NullableString** |  | [optional] 
+**ProfileImageUri** | Pointer to **string** |  | [optional] 
 **Email** | Pointer to **string** |  | 
-**Description** | Pointer to **NullableString** |  | [optional] 
-**SocialLink** | Pointer to **NullableString** |  | [optional] 
-**Gender** | Pointer to **NullableString** |  | [optional] 
-**IdentifyStatus** | Pointer to **NullableString** |  | [optional] 
-**CustomerId** | Pointer to **NullableString** |  | [optional] 
+**Description** | Pointer to **string** |  | [optional] 
+**SocialLink** | Pointer to **string** |  | [optional] 
+**Gender** | Pointer to **string** |  | [optional] 
+**IdentifyStatus** | Pointer to **string** |  | [optional] 
+**CustomerId** | Pointer to **string** |  | [optional] 
 **CreatedAt** | Pointer to [**time.Time**](time.Time.md) |  | 
 **UpdatedAt** | Pointer to [**time.Time**](time.Time.md) |  | 
-**DeletedAt** | Pointer to [**NullableTime**](time.Time.md) |  | [optional] 
+**DeletedAt** | Pointer to [**time.Time**](time.Time.md) |  | [optional] 
 
 ## Methods
 
@@ -61,16 +61,6 @@ SetUserId sets UserId field to given value.
 
 HasUserId returns a boolean if a field has been set.
 
-### SetUserIdNil
-
-`func (o *User) SetUserIdNil(b bool)`
-
- SetUserIdNil sets the value for UserId to be an explicit nil
-
-### UnsetUserId
-`func (o *User) UnsetUserId()`
-
-UnsetUserId ensures that no value is present for UserId, not even an explicit nil
 ### GetNickName
 
 `func (o *User) GetNickName() string`
@@ -116,16 +106,6 @@ SetProfileImageUri sets ProfileImageUri field to given value.
 
 HasProfileImageUri returns a boolean if a field has been set.
 
-### SetProfileImageUriNil
-
-`func (o *User) SetProfileImageUriNil(b bool)`
-
- SetProfileImageUriNil sets the value for ProfileImageUri to be an explicit nil
-
-### UnsetProfileImageUri
-`func (o *User) UnsetProfileImageUri()`
-
-UnsetProfileImageUri ensures that no value is present for ProfileImageUri, not even an explicit nil
 ### GetEmail
 
 `func (o *User) GetEmail() string`
@@ -171,16 +151,6 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
-### SetDescriptionNil
-
-`func (o *User) SetDescriptionNil(b bool)`
-
- SetDescriptionNil sets the value for Description to be an explicit nil
-
-### UnsetDescription
-`func (o *User) UnsetDescription()`
-
-UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetSocialLink
 
 `func (o *User) GetSocialLink() string`
@@ -206,16 +176,6 @@ SetSocialLink sets SocialLink field to given value.
 
 HasSocialLink returns a boolean if a field has been set.
 
-### SetSocialLinkNil
-
-`func (o *User) SetSocialLinkNil(b bool)`
-
- SetSocialLinkNil sets the value for SocialLink to be an explicit nil
-
-### UnsetSocialLink
-`func (o *User) UnsetSocialLink()`
-
-UnsetSocialLink ensures that no value is present for SocialLink, not even an explicit nil
 ### GetGender
 
 `func (o *User) GetGender() string`
@@ -241,16 +201,6 @@ SetGender sets Gender field to given value.
 
 HasGender returns a boolean if a field has been set.
 
-### SetGenderNil
-
-`func (o *User) SetGenderNil(b bool)`
-
- SetGenderNil sets the value for Gender to be an explicit nil
-
-### UnsetGender
-`func (o *User) UnsetGender()`
-
-UnsetGender ensures that no value is present for Gender, not even an explicit nil
 ### GetIdentifyStatus
 
 `func (o *User) GetIdentifyStatus() string`
@@ -276,16 +226,6 @@ SetIdentifyStatus sets IdentifyStatus field to given value.
 
 HasIdentifyStatus returns a boolean if a field has been set.
 
-### SetIdentifyStatusNil
-
-`func (o *User) SetIdentifyStatusNil(b bool)`
-
- SetIdentifyStatusNil sets the value for IdentifyStatus to be an explicit nil
-
-### UnsetIdentifyStatus
-`func (o *User) UnsetIdentifyStatus()`
-
-UnsetIdentifyStatus ensures that no value is present for IdentifyStatus, not even an explicit nil
 ### GetCustomerId
 
 `func (o *User) GetCustomerId() string`
@@ -311,16 +251,6 @@ SetCustomerId sets CustomerId field to given value.
 
 HasCustomerId returns a boolean if a field has been set.
 
-### SetCustomerIdNil
-
-`func (o *User) SetCustomerIdNil(b bool)`
-
- SetCustomerIdNil sets the value for CustomerId to be an explicit nil
-
-### UnsetCustomerId
-`func (o *User) UnsetCustomerId()`
-
-UnsetCustomerId ensures that no value is present for CustomerId, not even an explicit nil
 ### GetCreatedAt
 
 `func (o *User) GetCreatedAt() time.Time`
@@ -386,16 +316,6 @@ SetDeletedAt sets DeletedAt field to given value.
 
 HasDeletedAt returns a boolean if a field has been set.
 
-### SetDeletedAtNil
-
-`func (o *User) SetDeletedAtNil(b bool)`
-
- SetDeletedAtNil sets the value for DeletedAt to be an explicit nil
-
-### UnsetDeletedAt
-`func (o *User) UnsetDeletedAt()`
-
-UnsetDeletedAt ensures that no value is present for DeletedAt, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

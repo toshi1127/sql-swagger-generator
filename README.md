@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS users(
     created_at timestamp not null default current_timestamp,
     updated_at timestamp not null default current_timestamp on update current_timestamp,
     deleted_at timestamp
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+);
 ```
 
 Config:
@@ -109,33 +109,26 @@ type: object
 properties:
   user_id:
     type: string
-    x-nullable: true
   nick_name:
     type: string
   profile_image_uri:
     type: string
-    x-nullable: true
   email:
     type: string
   description:
     type: string
-    x-nullable: true
   social_link:
     type: string
-    x-nullable: true
   gender:
     type: string
     enum:
       - male
       - female
       - other
-    x-nullable: true
   identify_status:
     type: string
-    x-nullable: true
   customer_id:
     type: string
-    x-nullable: true
   created_at:
     type: string
     format: date-time
@@ -145,7 +138,6 @@ properties:
   deleted_at:
     type: string
     format: date-time
-    x-nullable: true
 required:
   - nick_name
   - email
