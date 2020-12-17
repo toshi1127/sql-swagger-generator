@@ -60,53 +60,118 @@ export interface Principal {
 /**
  * 
  * @export
- * @interface Product1
+ * @interface Product
  */
-export interface Product1 {
+export interface Product {
     /**
      * 
      * @type {number}
-     * @memberof Product1
+     * @memberof Product
      */
     id?: number;
     /**
      * 
      * @type {string}
-     * @memberof Product1
+     * @memberof Product
      */
     name: string;
     /**
      * 
      * @type {number}
-     * @memberof Product1
+     * @memberof Product
      */
     price: number;
 }
 /**
  * 
  * @export
- * @interface Product2
+ * @interface User
  */
-export interface Product2 {
-    /**
-     * 
-     * @type {number}
-     * @memberof Product2
-     */
-    id?: number;
+export interface User {
     /**
      * 
      * @type {string}
-     * @memberof Product2
+     * @memberof User
      */
-    name: string;
+    userId?: string | null;
     /**
      * 
-     * @type {number}
-     * @memberof Product2
+     * @type {string}
+     * @memberof User
      */
-    price: number;
+    nickName: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    profileImageUri?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    email: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    description?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    socialLink?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    gender?: UserGenderEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    identifyStatus?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    customerId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    createdAt: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    updatedAt: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    deletedAt?: string | null;
 }
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum UserGenderEnum {
+    Male = 'male',
+    Female = 'female',
+    Other = 'other'
+}
+
 
 /**
  * DefaultApi - axios parameter creator
@@ -115,18 +180,18 @@ export interface Product2 {
 export const DefaultApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Creates a product1.
-         * @summary Create product1
-         * @param {Product1} resource 
+         * Creates a product.
+         * @summary Create product
+         * @param {Product} resource 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createProduct1: async (resource: Product1, options: any = {}): Promise<RequestArgs> => {
+        createProduct: async (resource: Product, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'resource' is not null or undefined
             if (resource === null || resource === undefined) {
-                throw new RequiredError('resource','Required parameter resource was null or undefined when calling createProduct1.');
+                throw new RequiredError('resource','Required parameter resource was null or undefined when calling createProduct.');
             }
-            const localVarPath = `/products1`;
+            const localVarPath = `/products`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
             if (configuration) {
@@ -154,18 +219,18 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Creates a product2.
-         * @summary Create product2
-         * @param {Product2} resource 
+         * Creates a user.
+         * @summary Create user
+         * @param {User} resource 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createProduct2: async (resource: Product2, options: any = {}): Promise<RequestArgs> => {
+        createUser: async (resource: User, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'resource' is not null or undefined
             if (resource === null || resource === undefined) {
-                throw new RequiredError('resource','Required parameter resource was null or undefined when calling createProduct2.');
+                throw new RequiredError('resource','Required parameter resource was null or undefined when calling createUser.');
             }
-            const localVarPath = `/products2`;
+            const localVarPath = `/users`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
             if (configuration) {
@@ -193,18 +258,18 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Deletes the product1 with the given ID.
-         * @summary Delete product1
+         * Deletes the product with the given ID.
+         * @summary Delete product
          * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteProduct1: async (id: number, options: any = {}): Promise<RequestArgs> => {
+        deleteProduct: async (id: number, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling deleteProduct1.');
+                throw new RequiredError('id','Required parameter id was null or undefined when calling deleteProduct.');
             }
-            const localVarPath = `/products1/{id}`
+            const localVarPath = `/products/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -229,18 +294,18 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Deletes the product2 with the given ID.
-         * @summary Delete product2
+         * Deletes the user with the given ID.
+         * @summary Delete user
          * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteProduct2: async (id: number, options: any = {}): Promise<RequestArgs> => {
+        deleteUser: async (id: number, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling deleteProduct2.');
+                throw new RequiredError('id','Required parameter id was null or undefined when calling deleteUser.');
             }
-            const localVarPath = `/products2/{id}`
+            const localVarPath = `/users/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -265,18 +330,18 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Returns the product1 with the given ID.
-         * @summary Get product1 by ID
+         * Returns the product with the given ID.
+         * @summary Get product by ID
          * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProduct1: async (id: number, options: any = {}): Promise<RequestArgs> => {
+        getProduct: async (id: number, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling getProduct1.');
+                throw new RequiredError('id','Required parameter id was null or undefined when calling getProduct.');
             }
-            const localVarPath = `/products1/{id}`
+            const localVarPath = `/products/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -301,15 +366,15 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Returns all product1 resources.
-         * @summary Get product1s
+         * Returns all product resources.
+         * @summary Get products
          * @param {number} [limit] 
          * @param {number} [offset] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProduct1s: async (limit?: number, offset?: number, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/products1`;
+        getProducts: async (limit?: number, offset?: number, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/products`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
             if (configuration) {
@@ -341,14 +406,14 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Returns the product1 resources with the given IDs.
-         * @summary Get product1s by ID
+         * Returns the product resources with the given IDs.
+         * @summary Get products by ID
          * @param {Array<number>} [ids] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProduct1sByID: async (ids?: Array<number>, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/products1/batch`;
+        getProductsByID: async (ids?: Array<number>, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/products/batch`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
             if (configuration) {
@@ -376,18 +441,18 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Returns the product2 with the given ID.
-         * @summary Get product2 by ID
+         * Returns the user with the given ID.
+         * @summary Get user by ID
          * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProduct2: async (id: number, options: any = {}): Promise<RequestArgs> => {
+        getUser: async (id: number, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling getProduct2.');
+                throw new RequiredError('id','Required parameter id was null or undefined when calling getUser.');
             }
-            const localVarPath = `/products2/{id}`
+            const localVarPath = `/users/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -412,15 +477,15 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Returns all product2 resources.
-         * @summary Get product2s
+         * Returns all user resources.
+         * @summary Get users
          * @param {number} [limit] 
          * @param {number} [offset] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProduct2s: async (limit?: number, offset?: number, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/products2`;
+        getUsers: async (limit?: number, offset?: number, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/users`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
             if (configuration) {
@@ -452,14 +517,14 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Returns the product2 resources with the given IDs.
-         * @summary Get product2s by ID
+         * Returns the user resources with the given IDs.
+         * @summary Get users by ID
          * @param {Array<number>} [ids] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProduct2sByID: async (ids?: Array<number>, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/products2/batch`;
+        getUsersByID: async (ids?: Array<number>, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/users/batch`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
             if (configuration) {
@@ -516,23 +581,23 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Patches the product1 with the given ID.
-         * @summary Patch product1
+         * Patches the product with the given ID.
+         * @summary Patch product
          * @param {number} id 
          * @param {Array<object>} patch 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        patchProduct1: async (id: number, patch: Array<object>, options: any = {}): Promise<RequestArgs> => {
+        patchProduct: async (id: number, patch: Array<object>, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling patchProduct1.');
+                throw new RequiredError('id','Required parameter id was null or undefined when calling patchProduct.');
             }
             // verify required parameter 'patch' is not null or undefined
             if (patch === null || patch === undefined) {
-                throw new RequiredError('patch','Required parameter patch was null or undefined when calling patchProduct1.');
+                throw new RequiredError('patch','Required parameter patch was null or undefined when calling patchProduct.');
             }
-            const localVarPath = `/products1/{id}`
+            const localVarPath = `/products/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -561,23 +626,23 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Patches the product2 with the given ID.
-         * @summary Patch product2
+         * Patches the user with the given ID.
+         * @summary Patch user
          * @param {number} id 
          * @param {Array<object>} patch 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        patchProduct2: async (id: number, patch: Array<object>, options: any = {}): Promise<RequestArgs> => {
+        patchUser: async (id: number, patch: Array<object>, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling patchProduct2.');
+                throw new RequiredError('id','Required parameter id was null or undefined when calling patchUser.');
             }
             // verify required parameter 'patch' is not null or undefined
             if (patch === null || patch === undefined) {
-                throw new RequiredError('patch','Required parameter patch was null or undefined when calling patchProduct2.');
+                throw new RequiredError('patch','Required parameter patch was null or undefined when calling patchUser.');
             }
-            const localVarPath = `/products2/{id}`
+            const localVarPath = `/users/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -606,23 +671,23 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Replaces the product1 with the given ID.
-         * @summary Put product1
+         * Replaces the product with the given ID.
+         * @summary Put product
          * @param {number} id 
-         * @param {Product1} resource 
+         * @param {Product} resource 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        putProduct1: async (id: number, resource: Product1, options: any = {}): Promise<RequestArgs> => {
+        putProduct: async (id: number, resource: Product, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling putProduct1.');
+                throw new RequiredError('id','Required parameter id was null or undefined when calling putProduct.');
             }
             // verify required parameter 'resource' is not null or undefined
             if (resource === null || resource === undefined) {
-                throw new RequiredError('resource','Required parameter resource was null or undefined when calling putProduct1.');
+                throw new RequiredError('resource','Required parameter resource was null or undefined when calling putProduct.');
             }
-            const localVarPath = `/products1/{id}`
+            const localVarPath = `/products/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -651,23 +716,23 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Replaces the product2 with the given ID.
-         * @summary Put product2
+         * Replaces the user with the given ID.
+         * @summary Put user
          * @param {number} id 
-         * @param {Product2} resource 
+         * @param {User} resource 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        putProduct2: async (id: number, resource: Product2, options: any = {}): Promise<RequestArgs> => {
+        putUser: async (id: number, resource: User, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling putProduct2.');
+                throw new RequiredError('id','Required parameter id was null or undefined when calling putUser.');
             }
             // verify required parameter 'resource' is not null or undefined
             if (resource === null || resource === undefined) {
-                throw new RequiredError('resource','Required parameter resource was null or undefined when calling putProduct2.');
+                throw new RequiredError('resource','Required parameter resource was null or undefined when calling putUser.');
             }
-            const localVarPath = `/products2/{id}`
+            const localVarPath = `/users/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -705,142 +770,142 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
 export const DefaultApiFp = function(configuration?: Configuration) {
     return {
         /**
-         * Creates a product1.
-         * @summary Create product1
-         * @param {Product1} resource 
+         * Creates a product.
+         * @summary Create product
+         * @param {Product} resource 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createProduct1(resource: Product1, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Product1>> {
-            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).createProduct1(resource, options);
+        async createProduct(resource: Product, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Product>> {
+            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).createProduct(resource, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
             };
         },
         /**
-         * Creates a product2.
-         * @summary Create product2
-         * @param {Product2} resource 
+         * Creates a user.
+         * @summary Create user
+         * @param {User} resource 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createProduct2(resource: Product2, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Product2>> {
-            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).createProduct2(resource, options);
+        async createUser(resource: User, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
+            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).createUser(resource, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
             };
         },
         /**
-         * Deletes the product1 with the given ID.
-         * @summary Delete product1
+         * Deletes the product with the given ID.
+         * @summary Delete product
          * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteProduct1(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).deleteProduct1(id, options);
+        async deleteProduct(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).deleteProduct(id, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
             };
         },
         /**
-         * Deletes the product2 with the given ID.
-         * @summary Delete product2
+         * Deletes the user with the given ID.
+         * @summary Delete user
          * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteProduct2(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).deleteProduct2(id, options);
+        async deleteUser(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).deleteUser(id, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
             };
         },
         /**
-         * Returns the product1 with the given ID.
-         * @summary Get product1 by ID
+         * Returns the product with the given ID.
+         * @summary Get product by ID
          * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getProduct1(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Product1>> {
-            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).getProduct1(id, options);
+        async getProduct(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Product>> {
+            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).getProduct(id, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
             };
         },
         /**
-         * Returns all product1 resources.
-         * @summary Get product1s
+         * Returns all product resources.
+         * @summary Get products
          * @param {number} [limit] 
          * @param {number} [offset] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getProduct1s(limit?: number, offset?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Product1>>> {
-            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).getProduct1s(limit, offset, options);
+        async getProducts(limit?: number, offset?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Product>>> {
+            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).getProducts(limit, offset, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
             };
         },
         /**
-         * Returns the product1 resources with the given IDs.
-         * @summary Get product1s by ID
+         * Returns the product resources with the given IDs.
+         * @summary Get products by ID
          * @param {Array<number>} [ids] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getProduct1sByID(ids?: Array<number>, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Product1>>> {
-            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).getProduct1sByID(ids, options);
+        async getProductsByID(ids?: Array<number>, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Product>>> {
+            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).getProductsByID(ids, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
             };
         },
         /**
-         * Returns the product2 with the given ID.
-         * @summary Get product2 by ID
+         * Returns the user with the given ID.
+         * @summary Get user by ID
          * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getProduct2(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Product2>> {
-            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).getProduct2(id, options);
+        async getUser(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
+            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).getUser(id, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
             };
         },
         /**
-         * Returns all product2 resources.
-         * @summary Get product2s
+         * Returns all user resources.
+         * @summary Get users
          * @param {number} [limit] 
          * @param {number} [offset] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getProduct2s(limit?: number, offset?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Product2>>> {
-            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).getProduct2s(limit, offset, options);
+        async getUsers(limit?: number, offset?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<User>>> {
+            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).getUsers(limit, offset, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
             };
         },
         /**
-         * Returns the product2 resources with the given IDs.
-         * @summary Get product2s by ID
+         * Returns the user resources with the given IDs.
+         * @summary Get users by ID
          * @param {Array<number>} [ids] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getProduct2sByID(ids?: Array<number>, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Product2>>> {
-            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).getProduct2sByID(ids, options);
+        async getUsersByID(ids?: Array<number>, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<User>>> {
+            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).getUsersByID(ids, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -859,60 +924,60 @@ export const DefaultApiFp = function(configuration?: Configuration) {
             };
         },
         /**
-         * Patches the product1 with the given ID.
-         * @summary Patch product1
+         * Patches the product with the given ID.
+         * @summary Patch product
          * @param {number} id 
          * @param {Array<object>} patch 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async patchProduct1(id: number, patch: Array<object>, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Product1>> {
-            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).patchProduct1(id, patch, options);
+        async patchProduct(id: number, patch: Array<object>, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Product>> {
+            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).patchProduct(id, patch, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
             };
         },
         /**
-         * Patches the product2 with the given ID.
-         * @summary Patch product2
+         * Patches the user with the given ID.
+         * @summary Patch user
          * @param {number} id 
          * @param {Array<object>} patch 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async patchProduct2(id: number, patch: Array<object>, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Product2>> {
-            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).patchProduct2(id, patch, options);
+        async patchUser(id: number, patch: Array<object>, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
+            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).patchUser(id, patch, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
             };
         },
         /**
-         * Replaces the product1 with the given ID.
-         * @summary Put product1
+         * Replaces the product with the given ID.
+         * @summary Put product
          * @param {number} id 
-         * @param {Product1} resource 
+         * @param {Product} resource 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async putProduct1(id: number, resource: Product1, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).putProduct1(id, resource, options);
+        async putProduct(id: number, resource: Product, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).putProduct(id, resource, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
             };
         },
         /**
-         * Replaces the product2 with the given ID.
-         * @summary Put product2
+         * Replaces the user with the given ID.
+         * @summary Put user
          * @param {number} id 
-         * @param {Product2} resource 
+         * @param {User} resource 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async putProduct2(id: number, resource: Product2, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).putProduct2(id, resource, options);
+        async putUser(id: number, resource: User, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).putUser(id, resource, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -928,106 +993,106 @@ export const DefaultApiFp = function(configuration?: Configuration) {
 export const DefaultApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     return {
         /**
-         * Creates a product1.
-         * @summary Create product1
-         * @param {Product1} resource 
+         * Creates a product.
+         * @summary Create product
+         * @param {Product} resource 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createProduct1(resource: Product1, options?: any): AxiosPromise<Product1> {
-            return DefaultApiFp(configuration).createProduct1(resource, options).then((request) => request(axios, basePath));
+        createProduct(resource: Product, options?: any): AxiosPromise<Product> {
+            return DefaultApiFp(configuration).createProduct(resource, options).then((request) => request(axios, basePath));
         },
         /**
-         * Creates a product2.
-         * @summary Create product2
-         * @param {Product2} resource 
+         * Creates a user.
+         * @summary Create user
+         * @param {User} resource 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createProduct2(resource: Product2, options?: any): AxiosPromise<Product2> {
-            return DefaultApiFp(configuration).createProduct2(resource, options).then((request) => request(axios, basePath));
+        createUser(resource: User, options?: any): AxiosPromise<User> {
+            return DefaultApiFp(configuration).createUser(resource, options).then((request) => request(axios, basePath));
         },
         /**
-         * Deletes the product1 with the given ID.
-         * @summary Delete product1
+         * Deletes the product with the given ID.
+         * @summary Delete product
          * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteProduct1(id: number, options?: any): AxiosPromise<void> {
-            return DefaultApiFp(configuration).deleteProduct1(id, options).then((request) => request(axios, basePath));
+        deleteProduct(id: number, options?: any): AxiosPromise<void> {
+            return DefaultApiFp(configuration).deleteProduct(id, options).then((request) => request(axios, basePath));
         },
         /**
-         * Deletes the product2 with the given ID.
-         * @summary Delete product2
+         * Deletes the user with the given ID.
+         * @summary Delete user
          * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteProduct2(id: number, options?: any): AxiosPromise<void> {
-            return DefaultApiFp(configuration).deleteProduct2(id, options).then((request) => request(axios, basePath));
+        deleteUser(id: number, options?: any): AxiosPromise<void> {
+            return DefaultApiFp(configuration).deleteUser(id, options).then((request) => request(axios, basePath));
         },
         /**
-         * Returns the product1 with the given ID.
-         * @summary Get product1 by ID
+         * Returns the product with the given ID.
+         * @summary Get product by ID
          * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProduct1(id: number, options?: any): AxiosPromise<Product1> {
-            return DefaultApiFp(configuration).getProduct1(id, options).then((request) => request(axios, basePath));
+        getProduct(id: number, options?: any): AxiosPromise<Product> {
+            return DefaultApiFp(configuration).getProduct(id, options).then((request) => request(axios, basePath));
         },
         /**
-         * Returns all product1 resources.
-         * @summary Get product1s
+         * Returns all product resources.
+         * @summary Get products
          * @param {number} [limit] 
          * @param {number} [offset] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProduct1s(limit?: number, offset?: number, options?: any): AxiosPromise<Array<Product1>> {
-            return DefaultApiFp(configuration).getProduct1s(limit, offset, options).then((request) => request(axios, basePath));
+        getProducts(limit?: number, offset?: number, options?: any): AxiosPromise<Array<Product>> {
+            return DefaultApiFp(configuration).getProducts(limit, offset, options).then((request) => request(axios, basePath));
         },
         /**
-         * Returns the product1 resources with the given IDs.
-         * @summary Get product1s by ID
+         * Returns the product resources with the given IDs.
+         * @summary Get products by ID
          * @param {Array<number>} [ids] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProduct1sByID(ids?: Array<number>, options?: any): AxiosPromise<Array<Product1>> {
-            return DefaultApiFp(configuration).getProduct1sByID(ids, options).then((request) => request(axios, basePath));
+        getProductsByID(ids?: Array<number>, options?: any): AxiosPromise<Array<Product>> {
+            return DefaultApiFp(configuration).getProductsByID(ids, options).then((request) => request(axios, basePath));
         },
         /**
-         * Returns the product2 with the given ID.
-         * @summary Get product2 by ID
+         * Returns the user with the given ID.
+         * @summary Get user by ID
          * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProduct2(id: number, options?: any): AxiosPromise<Product2> {
-            return DefaultApiFp(configuration).getProduct2(id, options).then((request) => request(axios, basePath));
+        getUser(id: number, options?: any): AxiosPromise<User> {
+            return DefaultApiFp(configuration).getUser(id, options).then((request) => request(axios, basePath));
         },
         /**
-         * Returns all product2 resources.
-         * @summary Get product2s
+         * Returns all user resources.
+         * @summary Get users
          * @param {number} [limit] 
          * @param {number} [offset] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProduct2s(limit?: number, offset?: number, options?: any): AxiosPromise<Array<Product2>> {
-            return DefaultApiFp(configuration).getProduct2s(limit, offset, options).then((request) => request(axios, basePath));
+        getUsers(limit?: number, offset?: number, options?: any): AxiosPromise<Array<User>> {
+            return DefaultApiFp(configuration).getUsers(limit, offset, options).then((request) => request(axios, basePath));
         },
         /**
-         * Returns the product2 resources with the given IDs.
-         * @summary Get product2s by ID
+         * Returns the user resources with the given IDs.
+         * @summary Get users by ID
          * @param {Array<number>} [ids] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProduct2sByID(ids?: Array<number>, options?: any): AxiosPromise<Array<Product2>> {
-            return DefaultApiFp(configuration).getProduct2sByID(ids, options).then((request) => request(axios, basePath));
+        getUsersByID(ids?: Array<number>, options?: any): AxiosPromise<Array<User>> {
+            return DefaultApiFp(configuration).getUsersByID(ids, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns 200 if the service is healthy.
@@ -1038,48 +1103,48 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
             return DefaultApiFp(configuration).healthCheck(options).then((request) => request(axios, basePath));
         },
         /**
-         * Patches the product1 with the given ID.
-         * @summary Patch product1
+         * Patches the product with the given ID.
+         * @summary Patch product
          * @param {number} id 
          * @param {Array<object>} patch 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        patchProduct1(id: number, patch: Array<object>, options?: any): AxiosPromise<Product1> {
-            return DefaultApiFp(configuration).patchProduct1(id, patch, options).then((request) => request(axios, basePath));
+        patchProduct(id: number, patch: Array<object>, options?: any): AxiosPromise<Product> {
+            return DefaultApiFp(configuration).patchProduct(id, patch, options).then((request) => request(axios, basePath));
         },
         /**
-         * Patches the product2 with the given ID.
-         * @summary Patch product2
+         * Patches the user with the given ID.
+         * @summary Patch user
          * @param {number} id 
          * @param {Array<object>} patch 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        patchProduct2(id: number, patch: Array<object>, options?: any): AxiosPromise<Product2> {
-            return DefaultApiFp(configuration).patchProduct2(id, patch, options).then((request) => request(axios, basePath));
+        patchUser(id: number, patch: Array<object>, options?: any): AxiosPromise<User> {
+            return DefaultApiFp(configuration).patchUser(id, patch, options).then((request) => request(axios, basePath));
         },
         /**
-         * Replaces the product1 with the given ID.
-         * @summary Put product1
+         * Replaces the product with the given ID.
+         * @summary Put product
          * @param {number} id 
-         * @param {Product1} resource 
+         * @param {Product} resource 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        putProduct1(id: number, resource: Product1, options?: any): AxiosPromise<void> {
-            return DefaultApiFp(configuration).putProduct1(id, resource, options).then((request) => request(axios, basePath));
+        putProduct(id: number, resource: Product, options?: any): AxiosPromise<void> {
+            return DefaultApiFp(configuration).putProduct(id, resource, options).then((request) => request(axios, basePath));
         },
         /**
-         * Replaces the product2 with the given ID.
-         * @summary Put product2
+         * Replaces the user with the given ID.
+         * @summary Put user
          * @param {number} id 
-         * @param {Product2} resource 
+         * @param {User} resource 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        putProduct2(id: number, resource: Product2, options?: any): AxiosPromise<void> {
-            return DefaultApiFp(configuration).putProduct2(id, resource, options).then((request) => request(axios, basePath));
+        putUser(id: number, resource: User, options?: any): AxiosPromise<void> {
+            return DefaultApiFp(configuration).putUser(id, resource, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1092,125 +1157,125 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
  */
 export class DefaultApi extends BaseAPI {
     /**
-     * Creates a product1.
-     * @summary Create product1
-     * @param {Product1} resource 
+     * Creates a product.
+     * @summary Create product
+     * @param {Product} resource 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public createProduct1(resource: Product1, options?: any) {
-        return DefaultApiFp(this.configuration).createProduct1(resource, options).then((request) => request(this.axios, this.basePath));
+    public createProduct(resource: Product, options?: any) {
+        return DefaultApiFp(this.configuration).createProduct(resource, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Creates a product2.
-     * @summary Create product2
-     * @param {Product2} resource 
+     * Creates a user.
+     * @summary Create user
+     * @param {User} resource 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public createProduct2(resource: Product2, options?: any) {
-        return DefaultApiFp(this.configuration).createProduct2(resource, options).then((request) => request(this.axios, this.basePath));
+    public createUser(resource: User, options?: any) {
+        return DefaultApiFp(this.configuration).createUser(resource, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Deletes the product1 with the given ID.
-     * @summary Delete product1
+     * Deletes the product with the given ID.
+     * @summary Delete product
      * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public deleteProduct1(id: number, options?: any) {
-        return DefaultApiFp(this.configuration).deleteProduct1(id, options).then((request) => request(this.axios, this.basePath));
+    public deleteProduct(id: number, options?: any) {
+        return DefaultApiFp(this.configuration).deleteProduct(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Deletes the product2 with the given ID.
-     * @summary Delete product2
+     * Deletes the user with the given ID.
+     * @summary Delete user
      * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public deleteProduct2(id: number, options?: any) {
-        return DefaultApiFp(this.configuration).deleteProduct2(id, options).then((request) => request(this.axios, this.basePath));
+    public deleteUser(id: number, options?: any) {
+        return DefaultApiFp(this.configuration).deleteUser(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Returns the product1 with the given ID.
-     * @summary Get product1 by ID
+     * Returns the product with the given ID.
+     * @summary Get product by ID
      * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public getProduct1(id: number, options?: any) {
-        return DefaultApiFp(this.configuration).getProduct1(id, options).then((request) => request(this.axios, this.basePath));
+    public getProduct(id: number, options?: any) {
+        return DefaultApiFp(this.configuration).getProduct(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Returns all product1 resources.
-     * @summary Get product1s
+     * Returns all product resources.
+     * @summary Get products
      * @param {number} [limit] 
      * @param {number} [offset] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public getProduct1s(limit?: number, offset?: number, options?: any) {
-        return DefaultApiFp(this.configuration).getProduct1s(limit, offset, options).then((request) => request(this.axios, this.basePath));
+    public getProducts(limit?: number, offset?: number, options?: any) {
+        return DefaultApiFp(this.configuration).getProducts(limit, offset, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Returns the product1 resources with the given IDs.
-     * @summary Get product1s by ID
+     * Returns the product resources with the given IDs.
+     * @summary Get products by ID
      * @param {Array<number>} [ids] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public getProduct1sByID(ids?: Array<number>, options?: any) {
-        return DefaultApiFp(this.configuration).getProduct1sByID(ids, options).then((request) => request(this.axios, this.basePath));
+    public getProductsByID(ids?: Array<number>, options?: any) {
+        return DefaultApiFp(this.configuration).getProductsByID(ids, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Returns the product2 with the given ID.
-     * @summary Get product2 by ID
+     * Returns the user with the given ID.
+     * @summary Get user by ID
      * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public getProduct2(id: number, options?: any) {
-        return DefaultApiFp(this.configuration).getProduct2(id, options).then((request) => request(this.axios, this.basePath));
+    public getUser(id: number, options?: any) {
+        return DefaultApiFp(this.configuration).getUser(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Returns all product2 resources.
-     * @summary Get product2s
+     * Returns all user resources.
+     * @summary Get users
      * @param {number} [limit] 
      * @param {number} [offset] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public getProduct2s(limit?: number, offset?: number, options?: any) {
-        return DefaultApiFp(this.configuration).getProduct2s(limit, offset, options).then((request) => request(this.axios, this.basePath));
+    public getUsers(limit?: number, offset?: number, options?: any) {
+        return DefaultApiFp(this.configuration).getUsers(limit, offset, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Returns the product2 resources with the given IDs.
-     * @summary Get product2s by ID
+     * Returns the user resources with the given IDs.
+     * @summary Get users by ID
      * @param {Array<number>} [ids] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public getProduct2sByID(ids?: Array<number>, options?: any) {
-        return DefaultApiFp(this.configuration).getProduct2sByID(ids, options).then((request) => request(this.axios, this.basePath));
+    public getUsersByID(ids?: Array<number>, options?: any) {
+        return DefaultApiFp(this.configuration).getUsersByID(ids, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1224,55 +1289,55 @@ export class DefaultApi extends BaseAPI {
     }
 
     /**
-     * Patches the product1 with the given ID.
-     * @summary Patch product1
+     * Patches the product with the given ID.
+     * @summary Patch product
      * @param {number} id 
      * @param {Array<object>} patch 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public patchProduct1(id: number, patch: Array<object>, options?: any) {
-        return DefaultApiFp(this.configuration).patchProduct1(id, patch, options).then((request) => request(this.axios, this.basePath));
+    public patchProduct(id: number, patch: Array<object>, options?: any) {
+        return DefaultApiFp(this.configuration).patchProduct(id, patch, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Patches the product2 with the given ID.
-     * @summary Patch product2
+     * Patches the user with the given ID.
+     * @summary Patch user
      * @param {number} id 
      * @param {Array<object>} patch 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public patchProduct2(id: number, patch: Array<object>, options?: any) {
-        return DefaultApiFp(this.configuration).patchProduct2(id, patch, options).then((request) => request(this.axios, this.basePath));
+    public patchUser(id: number, patch: Array<object>, options?: any) {
+        return DefaultApiFp(this.configuration).patchUser(id, patch, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Replaces the product1 with the given ID.
-     * @summary Put product1
+     * Replaces the product with the given ID.
+     * @summary Put product
      * @param {number} id 
-     * @param {Product1} resource 
+     * @param {Product} resource 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public putProduct1(id: number, resource: Product1, options?: any) {
-        return DefaultApiFp(this.configuration).putProduct1(id, resource, options).then((request) => request(this.axios, this.basePath));
+    public putProduct(id: number, resource: Product, options?: any) {
+        return DefaultApiFp(this.configuration).putProduct(id, resource, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Replaces the product2 with the given ID.
-     * @summary Put product2
+     * Replaces the user with the given ID.
+     * @summary Put user
      * @param {number} id 
-     * @param {Product2} resource 
+     * @param {User} resource 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public putProduct2(id: number, resource: Product2, options?: any) {
-        return DefaultApiFp(this.configuration).putProduct2(id, resource, options).then((request) => request(this.axios, this.basePath));
+    public putUser(id: number, resource: User, options?: any) {
+        return DefaultApiFp(this.configuration).putUser(id, resource, options).then((request) => request(this.axios, this.basePath));
     }
 
 }

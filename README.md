@@ -1,12 +1,15 @@
 # sql-swagger-generator
+
 Generate swagger file from CREATE TABLE statement.
 This results in a boilerplate swaggerfile (YML) that should probably be edited to completely suit your needs.
 By combining the generated swagger with the [openapi generator](https://github.com/OpenAPITools/openapi-generator), you can implement your application in a fast way.
 
 ## Swagger version
+
 Swagen generates Swagger/OpenAPI 2.0 configuration.
 
 ## Installation
+
 Swagen can be acquired and installed by running
 
 ```
@@ -14,6 +17,7 @@ go get -v -u github.com/toshi1127/sql-swagger-generator
 ```
 
 ## How to build
+
 Or, alternatively, the binary can be manually built:
 
 ```
@@ -23,6 +27,7 @@ go build -o ~/bin/sql-swagger-generator main.go
 ## Usage
 
 ### Creating a config file
+
 You will need to create a small config file that Swagen uses to generate YML. For example:
 
 ```
@@ -42,6 +47,7 @@ resources:
 ```
 
 ### Running Swagen
+
 Swagger YML can then be generated using the following command:
 
 ```
@@ -49,21 +55,31 @@ sql-swagger-generator conf=./example/conf.yml -sql=./example/queries.sql -output
 ```
 
 ### Example
+
 Products table:
 
 ```sql
-CREATE TABLE products1 (
+CREATE TABLE products (
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
     price INT NOT NULL,
     PRIMARY KEY (id)
-); 
-CREATE TABLE products2 (
-    id INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(255) NOT NULL,
-    price INT NOT NULL,
-    PRIMARY KEY (id)
-); 
+);
+
+CREATE TABLE IF NOT EXISTS users(
+    user_id varchar(255) PRIMARY KEY,
+    nick_name varchar(255) NOT NULL,
+    profile_image_uri varchar(255),
+    email varchar(255) NOT NULL,
+    description varchar(255),
+    social_link varchar(255),
+    gender enum('male', 'female', 'other'),
+    identify_status varchar(255),
+    customer_id varchar(255),
+    created_at timestamp not null default current_timestamp,
+    updated_at timestamp not null default current_timestamp on update current_timestamp,
+    deleted_at timestamp
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 ```
 
 Config:
@@ -75,37 +91,70 @@ service:
   prefix: /v1
 
 resources:
-  products1:
-    title: product1
+  users:
+    title: user
     definition:
-      name: Product1
-  products2:
-    title: product2
+      name: User
+  products:
+    title: product
     definition:
-      name: Product2
+      name: Product
 ```
 
 **Entity generation results:**
 
-```models/product1.yml
-title: Product1
+```models/user.yml
+title: User
 type: object
 properties:
-  id:
-    type: integer
-    format: int64
-  name:
+  user_id:
     type: string
-  price:
-    type: integer
-    format: int64
+    x-nullable: true
+  nick_name:
+    type: string
+  profile_image_uri:
+    type: string
+    x-nullable: true
+  email:
+    type: string
+  description:
+    type: string
+    x-nullable: true
+  social_link:
+    type: string
+    x-nullable: true
+  gender:
+    type: string
+    enum:
+      - male
+      - female
+      - other
+    x-nullable: true
+  identify_status:
+    type: string
+    x-nullable: true
+  customer_id:
+    type: string
+    x-nullable: true
+  created_at:
+    type: string
+    format: date-time
+  updated_at:
+    type: string
+    format: date-time
+  deleted_at:
+    type: string
+    format: date-time
+    x-nullable: true
 required:
-  - name
-  - price
+  - nick_name
+  - email
+  - created_at
+  - updated_at
 ```
 
-```models/product2.yml
-title: Product2
+```models/product.yml
+title: Product
 type: object
 properties:
   id:
@@ -122,6 +171,7 @@ required:
 ```
 
 **Endpoint generation results:**
+
 <details><summary>show:</summary><div>
 
 ```
@@ -147,11 +197,11 @@ paths:
           description: Healthy
         500:
           description: Not healthy
-  /products1:
+  /users:
     get:
-      operationId: GetProduct1s
-      summary: Get product1s
-      description: Returns all product1 resources.
+      operationId: GetUsers
+      summary: Get users
+      description: Returns all user resources.
       parameters:
         - in: query
           name: limit
@@ -161,28 +211,28 @@ paths:
           type: integer
       responses:
         200:
-          description: List of product1 resources.
+          description: List of user resources.
           schema:
             type: array
             items:
-              $ref: './models/Product1.yml'
+              $ref: './models/User.yml'
         500:
           description: Internal server error
     post:
-      operationId: CreateProduct1
-      summary: Create product1
-      description: Creates a product1.
+      operationId: CreateUser
+      summary: Create user
+      description: Creates a user.
       parameters:
         - name: resource
           in: body
           required: true
           schema:
-            $ref: './models/Product1.yml'
+            $ref: './models/User.yml'
       responses:
         201:
           description: Created
           schema:
-            $ref: './models/Product1.yml'
+            $ref: './models/User.yml'
         400:
           description: Bad request
           schema:
@@ -193,11 +243,11 @@ paths:
             $ref: '#/definitions/Error'
         500:
           description: Internal server error
-  /products1/batch:
+  /users/batch:
     get:
-      operationId: GetProduct1sByID
-      summary: Get product1s by ID
-      description: Returns the product1 resources with the given IDs.
+      operationId: GetUsersByID
+      summary: Get users by ID
+      description: Returns the user resources with the given IDs.
       parameters:
         - in: query
           name: ids
@@ -206,18 +256,18 @@ paths:
             type: integer
       responses:
         200:
-          description: List of product1 resources
+          description: List of user resources
           schema:
             type: array
             items:
-              $ref: './models/Product1.yml'
+              $ref: './models/User.yml'
         500:
           description: Internal server error
-  /products1/{id}:
+  /users/{id}:
     get:
-      operationId: GetProduct1
-      summary: Get product1 by ID
-      description: Returns the product1 with the given ID.
+      operationId: GetUser
+      summary: Get user by ID
+      description: Returns the user with the given ID.
       parameters:
         - in: path
           name: id
@@ -225,17 +275,17 @@ paths:
           required: true
       responses:
         200:
-          description: Single product1
+          description: Single user
           schema:
-            $ref: './models/Product1.yml'
+            $ref: './models/User.yml'
         404:
           description: Not found
         500:
           description: Internal server error
     patch:
-      operationId: PatchProduct1
-      summary: Patch product1
-      description: Patches the product1 with the given ID.
+      operationId: PatchUser
+      summary: Patch user
+      description: Patches the user with the given ID.
       parameters:
         - name: id
           in: path
@@ -250,7 +300,7 @@ paths:
         200:
           description: Success
           schema:
-            $ref: './models/Product1.yml'
+            $ref: './models/User.yml'
         400:
           description: Bad request
           schema:
@@ -264,9 +314,9 @@ paths:
         500:
           description: Internal server error
     put:
-      operationId: PutProduct1
-      summary: Put product1
-      description: Replaces the product1 with the given ID.
+      operationId: PutUser
+      summary: Put user
+      description: Replaces the user with the given ID.
       parameters:
         - name: id
           in: path
@@ -276,7 +326,7 @@ paths:
           in: body
           required: true
           schema:
-            $ref: './models/Product1.yml'
+            $ref: './models/User.yml'
       responses:
         200:
           description: Success
@@ -293,9 +343,9 @@ paths:
         500:
           description: Internal server error
     delete:
-      operationId: DeleteProduct1
-      summary: Delete product1
-      description: Deletes the product1 with the given ID.
+      operationId: DeleteUser
+      summary: Delete user
+      description: Deletes the user with the given ID.
       parameters:
         - name: id
           in: path
@@ -308,11 +358,11 @@ paths:
           description: Not found
         500:
           description: Internal server error
-  /products2:
+  /products:
     get:
-      operationId: GetProduct2s
-      summary: Get product2s
-      description: Returns all product2 resources.
+      operationId: GetProducts
+      summary: Get products
+      description: Returns all product resources.
       parameters:
         - in: query
           name: limit
@@ -322,28 +372,28 @@ paths:
           type: integer
       responses:
         200:
-          description: List of product2 resources.
+          description: List of product resources.
           schema:
             type: array
             items:
-              $ref: './models/Product2.yml'
+              $ref: './models/Product.yml'
         500:
           description: Internal server error
     post:
-      operationId: CreateProduct2
-      summary: Create product2
-      description: Creates a product2.
+      operationId: CreateProduct
+      summary: Create product
+      description: Creates a product.
       parameters:
         - name: resource
           in: body
           required: true
           schema:
-            $ref: './models/Product2.yml'
+            $ref: './models/Product.yml'
       responses:
         201:
           description: Created
           schema:
-            $ref: './models/Product2.yml'
+            $ref: './models/Product.yml'
         400:
           description: Bad request
           schema:
@@ -354,11 +404,11 @@ paths:
             $ref: '#/definitions/Error'
         500:
           description: Internal server error
-  /products2/batch:
+  /products/batch:
     get:
-      operationId: GetProduct2sByID
-      summary: Get product2s by ID
-      description: Returns the product2 resources with the given IDs.
+      operationId: GetProductsByID
+      summary: Get products by ID
+      description: Returns the product resources with the given IDs.
       parameters:
         - in: query
           name: ids
@@ -367,18 +417,18 @@ paths:
             type: integer
       responses:
         200:
-          description: List of product2 resources
+          description: List of product resources
           schema:
             type: array
             items:
-              $ref: './models/Product2.yml'
+              $ref: './models/Product.yml'
         500:
           description: Internal server error
-  /products2/{id}:
+  /products/{id}:
     get:
-      operationId: GetProduct2
-      summary: Get product2 by ID
-      description: Returns the product2 with the given ID.
+      operationId: GetProduct
+      summary: Get product by ID
+      description: Returns the product with the given ID.
       parameters:
         - in: path
           name: id
@@ -386,17 +436,17 @@ paths:
           required: true
       responses:
         200:
-          description: Single product2
+          description: Single product
           schema:
-            $ref: './models/Product2.yml'
+            $ref: './models/Product.yml'
         404:
           description: Not found
         500:
           description: Internal server error
     patch:
-      operationId: PatchProduct2
-      summary: Patch product2
-      description: Patches the product2 with the given ID.
+      operationId: PatchProduct
+      summary: Patch product
+      description: Patches the product with the given ID.
       parameters:
         - name: id
           in: path
@@ -411,7 +461,7 @@ paths:
         200:
           description: Success
           schema:
-            $ref: './models/Product2.yml'
+            $ref: './models/Product.yml'
         400:
           description: Bad request
           schema:
@@ -425,9 +475,9 @@ paths:
         500:
           description: Internal server error
     put:
-      operationId: PutProduct2
-      summary: Put product2
-      description: Replaces the product2 with the given ID.
+      operationId: PutProduct
+      summary: Put product
+      description: Replaces the product with the given ID.
       parameters:
         - name: id
           in: path
@@ -437,7 +487,7 @@ paths:
           in: body
           required: true
           schema:
-            $ref: './models/Product2.yml'
+            $ref: './models/Product.yml'
       responses:
         200:
           description: Success
@@ -454,9 +504,9 @@ paths:
         500:
           description: Internal server error
     delete:
-      operationId: DeleteProduct2
-      summary: Delete product2
-      description: Deletes the product2 with the given ID.
+      operationId: DeleteProduct
+      summary: Delete product
+      description: Deletes the product with the given ID.
       parameters:
         - name: id
           in: path
@@ -508,6 +558,6 @@ definitions:
         type: array
         items:
           type: string
-
 ```
-</summary><div>
+
+<div></details>

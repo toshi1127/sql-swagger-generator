@@ -4,11 +4,11 @@ service:
   prefix: /v1
 
 resources:
-  products1:
-    title: product1
+  users:
+    title: user
     definition:
-      name: Product1
-  products2:
-    title: product2
+      name: User
+  products:
+    title: product
     definition:
-      name: Product2
+      name: Product

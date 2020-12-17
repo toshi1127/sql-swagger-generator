@@ -13,34 +13,34 @@ import (
 	"encoding/json"
 )
 
-// Product1 struct for Product1
-type Product1 struct {
+// Product struct for Product
+type Product struct {
 	Id *int64 `json:"id,omitempty"`
 	Name string `json:"name"`
 	Price int64 `json:"price"`
 }
 
-// NewProduct1 instantiates a new Product1 object
+// NewProduct instantiates a new Product object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProduct1(name string, price int64, ) *Product1 {
-	this := Product1{}
+func NewProduct(name string, price int64, ) *Product {
+	this := Product{}
 	this.Name = name
 	this.Price = price
 	return &this
 }
 
-// NewProduct1WithDefaults instantiates a new Product1 object
+// NewProductWithDefaults instantiates a new Product object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewProduct1WithDefaults() *Product1 {
-	this := Product1{}
+func NewProductWithDefaults() *Product {
+	this := Product{}
 	return &this
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *Product1) GetId() int64 {
+func (o *Product) GetId() int64 {
 	if o == nil || o.Id == nil {
 		var ret int64
 		return ret
@@ -50,7 +50,7 @@ func (o *Product1) GetId() int64 {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Product1) GetIdOk() (*int64, bool) {
+func (o *Product) GetIdOk() (*int64, bool) {
 	if o == nil || o.Id == nil {
 		return nil, false
 	}
@@ -58,7 +58,7 @@ func (o *Product1) GetIdOk() (*int64, bool) {
 }
 
 // HasId returns a boolean if a field has been set.
-func (o *Product1) HasId() bool {
+func (o *Product) HasId() bool {
 	if o != nil && o.Id != nil {
 		return true
 	}
@@ -67,12 +67,12 @@ func (o *Product1) HasId() bool {
 }
 
 // SetId gets a reference to the given int64 and assigns it to the Id field.
-func (o *Product1) SetId(v int64) {
+func (o *Product) SetId(v int64) {
 	o.Id = &v
 }
 
 // GetName returns the Name field value
-func (o *Product1) GetName() string {
+func (o *Product) GetName() string {
 	if o == nil  {
 		var ret string
 		return ret
@@ -83,7 +83,7 @@ func (o *Product1) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *Product1) GetNameOk() (*string, bool) {
+func (o *Product) GetNameOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -91,12 +91,12 @@ func (o *Product1) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *Product1) SetName(v string) {
+func (o *Product) SetName(v string) {
 	o.Name = v
 }
 
 // GetPrice returns the Price field value
-func (o *Product1) GetPrice() int64 {
+func (o *Product) GetPrice() int64 {
 	if o == nil  {
 		var ret int64
 		return ret
@@ -107,7 +107,7 @@ func (o *Product1) GetPrice() int64 {
 
 // GetPriceOk returns a tuple with the Price field value
 // and a boolean to check if the value has been set.
-func (o *Product1) GetPriceOk() (*int64, bool) {
+func (o *Product) GetPriceOk() (*int64, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -115,11 +115,11 @@ func (o *Product1) GetPriceOk() (*int64, bool) {
 }
 
 // SetPrice sets field value
-func (o *Product1) SetPrice(v int64) {
+func (o *Product) SetPrice(v int64) {
 	o.Price = v
 }
 
-func (o Product1) MarshalJSON() ([]byte, error) {
+func (o Product) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
@@ -133,38 +133,38 @@ func (o Product1) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableProduct1 struct {
-	value *Product1
+type NullableProduct struct {
+	value *Product
 	isSet bool
 }
 
-func (v NullableProduct1) Get() *Product1 {
+func (v NullableProduct) Get() *Product {
 	return v.value
 }
 
-func (v *NullableProduct1) Set(val *Product1) {
+func (v *NullableProduct) Set(val *Product) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableProduct1) IsSet() bool {
+func (v NullableProduct) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableProduct1) Unset() {
+func (v *NullableProduct) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableProduct1(val *Product1) *NullableProduct1 {
-	return &NullableProduct1{value: val, isSet: true}
+func NewNullableProduct(val *Product) *NullableProduct {
+	return &NullableProduct{value: val, isSet: true}
 }
 
-func (v NullableProduct1) MarshalJSON() ([]byte, error) {
+func (v NullableProduct) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableProduct1) UnmarshalJSON(src []byte) error {
+func (v *NullableProduct) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
