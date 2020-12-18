@@ -83,7 +83,7 @@ var resourceTemplate = `
           schema:
             type: array
             items:
-              $ref: './models/{{ .Definition.Name }}.yml'
+              $ref: './models/{{ .Title }}.yml'
         500:
           description: Internal server error
     post:
@@ -95,12 +95,12 @@ var resourceTemplate = `
           in: body
           required: true
           schema:
-            $ref: './models/{{ .Definition.Name }}.yml'
+            $ref: './models/{{ .Title }}.yml'
       responses:
         201:
           description: Created
           schema:
-            $ref: './models/{{ .Definition.Name }}.yml'
+            $ref: './models/{{ .Title }}.yml'
         400:
           description: Bad request
           schema:
@@ -128,7 +128,7 @@ var resourceTemplate = `
           schema:
             type: array
             items:
-              $ref: './models/{{ .Definition.Name }}.yml'
+              $ref: './models/{{ .Title }}.yml'
         500:
           description: Internal server error
   /{{ .Path }}/{id}:
@@ -145,7 +145,7 @@ var resourceTemplate = `
         200:
           description: Single {{ .Title }}
           schema:
-            $ref: './models/{{ .Definition.Name }}.yml'
+            $ref: './models/{{ .Title }}.yml'
         404:
           description: Not found
         500:
@@ -168,7 +168,7 @@ var resourceTemplate = `
         200:
           description: Success
           schema:
-            $ref: './models/{{ .Definition.Name }}.yml'
+            $ref: './models/{{ .Title }}.yml'
         400:
           description: Bad request
           schema:
@@ -194,7 +194,7 @@ var resourceTemplate = `
           in: body
           required: true
           schema:
-            $ref: './models/{{ .Definition.Name }}.yml'
+            $ref: './models/{{ .Title }}.yml'
       responses:
         200:
           description: Success
