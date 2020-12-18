@@ -89,7 +89,9 @@ func getTypeFromSqlColumnType(col string, enumValues []string) FieldType {
 			"format": "date-time",
 		}}
 	case "tinyint":
-		return FieldType{"boolean", nil}
+		return FieldType{"integer", map[string]string{
+			"format": "int64",
+		}}
 	case "smallint":
 		return FieldType{"integer", map[string]string{
 			"format": "int64",
